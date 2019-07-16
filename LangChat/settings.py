@@ -48,6 +48,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'langchat-crosspollination.herokuapp.co
 # Application definition
 
 PREREQUISITE_APPS = [
+   'channels',
    'django.contrib.admin',
    'django.contrib.auth',
    'django.contrib.contenttypes',
@@ -102,7 +103,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'LangChat.wsgi.application'
-
+# Channels
+ASGI_APPLICATION = "LangChat.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
