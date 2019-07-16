@@ -1,0 +1,23 @@
+dist: xenial
+language: python
+services:
+- postgresql
+python:
+- 3.7
+env:
+- DJANGO=2.2 DB=postgres
+- export DJANGO_SETTINGS_MODULE=django_postgres_example.settings.travis
+install:
+- pip install -r requirements.txt
+before_script:
+- psql -c "CREATE DATABASE testing_db;" -U postgres
+- psql -c "CREATE USER foo WITH PASSWORD 'bar';" -U postgres
+script:
+- pytest
+deploy:
+  provider: heroku
+  api_key:
+    secure: oI8uB7/ewpf2bjukds0UBXwsXU9bjJml6nGvMSwffxaLq2tIjMcKzRZPFvIOdAo+4WUViJ0Xlxah5jOT9Osi40twSAgW619yWpJBsCEOh4f9atZByNBSNFdPpd5N5cvpENCpHWLsgQ41hb8+hTDTn6S+TxQFszRVsezqnoQPIv/eGMzyvvyzBL2E8dyQJ01a8EnIBCbYFa5OElHmRfZluAWgeBtcGzeNAwcFN9C/wgZDmS7/NZS/75pGh1JHpilEfkMBhaqVtQca5iyf0ZmJRqcVdnTfeLhgG2nSM/WRBE9utGUU9GEnCfAuIwp2K5ZnlAwlGgjt0tX12AysuqE3nxNrBOJfyqXhYgY3qrhNw37HJU9oEZd0QrUc+zGnQFk8nIF3mLnnNnoTjrRUa2DVxMjmnebqK9dlNbOdiW43IJkXneH2qgM7QIA6xAW2wtyx9rkO6MSbgqpz75tz0dFbBiNmEn4PTRZbNiosKYP0RrFN418MOiNfPxGMyqZDvwGAyX+yaotodi5qOQE1aSkM1xMvFpPSBLYWCkcr5a3C+VOOHjPNxaG81stwuALzW+6BUUr71n4OE/qviRzdjfIH34FW78Oqtjx2AUJ1kJAWji8byPykNqIQ6yXWeJHG+pY+bh5JF9qfY3bnoQsAIidnzfVMcIEC7DAfS/rLlXICDn8=
+  app: langchat-crosspollination
+  on:
+    repo: blake-enyart/LangChat_django
