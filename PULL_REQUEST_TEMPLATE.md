@@ -3,7 +3,7 @@
 ## What functionality does this accomplish?
 closes #
 
-**Description:**
+### Description:
 
 
 ## What did you struggle on to complete?
