@@ -1,0 +1,18 @@
+dist: xenial   # required for Python >= 3.7
+language: python
+services:
+  - postgresql
+python:
+  - 3.7
+env:
+  - DJANGO=2.2 DB=postgres
+  - export DJANGO_SETTINGS_MODULE=django_postgres_example.settings.travis
+  # Tell it the things it will need to install when it boots
+install:
+  - pip install -r requirements.txt
+# command to run tests
+before_script:
+  - psql -c "CREATE DATABASE testing_db;" -U postgres
+  - psql -c "CREATE USER foo WITH PASSWORD 'bar';" -U postgres
+script:
+  - pytest
