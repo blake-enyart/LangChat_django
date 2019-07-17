@@ -59,8 +59,8 @@ PREREQUISITE_APPS = [
 
 PROJECT_APPS = [
    'chat_app.apps.ChatAppConfig',
-   'rest_framework',
    'django_extensions',
+   'rest_framework',
 ]
 
 INSTALLED_APPS = PREREQUISITE_APPS + PROJECT_APPS
@@ -84,6 +84,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
 }
 
 TEMPLATES = [
@@ -158,6 +161,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'chat_app.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
