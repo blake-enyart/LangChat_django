@@ -181,4 +181,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-django_heroku.settings(locals())
+IS_CI = get('IS_CI', False)
+if not IS_CI:
+    django_heroku.settings(locals())
