@@ -10,62 +10,54 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import django_heroku
-import os
+from os.path import dirname, abspath, join
 import environ
+import os
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(PROJECT_DIR)
+# This function gets the current files path ~/git/LangChat/LangChat/settings/base.py
+# and moves up three levels to ~/git/LangChat/.
+ROOT_DIR = environ.Path(__file__) - 3
+APP_DIR = join(ROOT_DIR,'LangChat')
 
 env = environ.Env(
-    DB_NAME=str,
-    DB_USER=str,
-    DB_PASS=str,
+    DB_NAME=(str,''),
+    DB_USER=(str,''),
+    DB_PASS=(str,''),
     DEBUG=(bool, False),
     REDIS_URL=(tuple, ('127.0.0.1', 6379)),
     SECRET_KEY=str,
-    IS_CI=(bool, False),
+    DJANGO_ALLOWED_HOSTS=(list, [])
 )
 
 # setting the absolute path to .env file
-env_path = os.path.join(BASE_DIR, '.env')
-environ.Env.read_env(env_path) # reading .env file
+ENV_PATH = join(ROOT_DIR, '.env')
+environ.Env.read_env(ENV_PATH) # reading .env file
 
 # Hidden Variables
 # APP_ID = env('APP_ID')
 # API_KEY = env('API_KEY')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
-
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'langchat-crosspollination.herokuapp.com']
-
-
 # Application definition
-
-PREREQUISITE_APPS = [
-   'channels',
+DJANGO_APPS = (
    'django.contrib.admin',
    'django.contrib.auth',
    'django.contrib.contenttypes',
    'django.contrib.sessions',
    'django.contrib.messages',
    'django.contrib.staticfiles',
-]
+)
 
-PROJECT_APPS = [
-   'chat_app.apps.ChatAppConfig',
+THIRD_PARTY_APPS = (
+   'channels',
    'django_extensions',
    'rest_framework',
-]
+)
 
-INSTALLED_APPS = PREREQUISITE_APPS + PROJECT_APPS
+LOCAL_APPS = (
+   'chat_app.apps.ChatAppConfig',
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 
 MIDDLEWARE = [
@@ -79,12 +71,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'LangChat.urls'
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-    )
-}
 
 TEMPLATES = [
     {
@@ -103,46 +89,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'LangChat.wsgi.application'
-# Channels
-ASGI_APPLICATION = "LangChat.routing.application"
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [env('REDIS_URL')],
-        },
-    },
-}
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-if 'TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisci',
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': env('DB_NAME'),
-            'USER': env('DB_USER'),
-            'PASSWORD': env('DB_PASS'),
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -175,13 +124,22 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = join(ROOT_DIR,'staticfiles')
 
+# Channels
+ASGI_APPLICATION = "LangChat.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [env('REDIS_URL')],
+        },
+    },
+}
 
-IS_CI = env('IS_CI')
-if not IS_CI:
-    import dj_database_url
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-    django_heroku.settings(locals())
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
