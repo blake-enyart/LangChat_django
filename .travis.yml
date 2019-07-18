@@ -6,7 +6,8 @@ python:
 - 3.7
 env:
 - DJANGO=2.2 DB=postgres
-- export DJANGO_SETTINGS_MODULE=django_postgres_example.settings.travis
+before_install:
+- export DJANGO_SETTINGS_MODULE=LangChat.settings
 install:
 - pip install -r requirements.txt
 before_script:
