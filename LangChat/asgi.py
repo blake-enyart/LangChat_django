@@ -7,6 +7,6 @@ import os
 import django
 from channels.routing import get_default_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
+os.environ['DJANGO_SETTINGS_MODULE'] = 'LangChat.settings'
 django.setup()
 application = get_default_application()

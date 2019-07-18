@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('',  views.index, name='about'),
     re_path(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
+    path('api/v1/users/', views.UserList.as_view(), name='registration'),
 ]

@@ -22,6 +22,7 @@ env = environ.Env(
     DB_USER=str,
     DB_PASS=str,
     DEBUG=(bool, False),
+    REDIS_URL=(tuple, ('127.0.0.1', 6379)),
     SECRET_KEY=str,
 )
 
@@ -59,8 +60,8 @@ PREREQUISITE_APPS = [
 
 PROJECT_APPS = [
    'chat_app.apps.ChatAppConfig',
-   'rest_framework',
    'django_extensions',
+   'rest_framework',
 ]
 
 INSTALLED_APPS = PREREQUISITE_APPS + PROJECT_APPS
@@ -79,11 +80,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'LangChat.urls'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
 }
 
 TEMPLATES = [
@@ -109,7 +108,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [env('REDIS_URL')],
         },
     },
 }
@@ -158,6 +157,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'chat_app.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
