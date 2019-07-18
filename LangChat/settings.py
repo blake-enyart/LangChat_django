@@ -24,6 +24,7 @@ env = environ.Env(
     DEBUG=(bool, False),
     REDIS_URL=(tuple, ('127.0.0.1', 6379)),
     SECRET_KEY=str,
+    IS_CI=(bool, False),
 )
 
 # setting the absolute path to .env file
@@ -178,7 +179,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-django_heroku.settings(locals())
+IS_CI = env('IS_CI')
+if not IS_CI:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    django_heroku.settings(locals())
