@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from chat_app.views import SignUpView
+from chat_app.views import LogInView, LogOutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('chat_app.urls')),
-    path('api/v1/registration/', SignUpView.as_view(), name='registration'),
+    path('api/v1/log_in/', LogInView.as_view(), name='log_in'), # new
+    path('api/v1/log_out/', LogOutView.as_view(), name='log_out'), # new
 ]
