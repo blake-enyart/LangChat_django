@@ -7,9 +7,8 @@ python:
 - 3.7
 env:
 - DJANGO=2.2 DB=postgres
-- IS_CI=true
 before_install:
-- export DJANGO_SETTINGS_MODULE=LangChat.settings
+- export DJANGO_SETTINGS_MODULE=LangChat.settings.test
 install:
 - pip install -r requirements.txt
 script:
