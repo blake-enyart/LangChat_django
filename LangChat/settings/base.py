@@ -16,8 +16,8 @@ import os
 
 # This function gets the current files path ~/git/LangChat/LangChat/settings/base.py
 # and moves up three levels to ~/git/LangChat/.
-ROOT_DIR = environ.Path(__file__) - 3
-APP_DIR = join(ROOT_DIR,'LangChat')
+BASE_DIR = environ.Path(__file__) - 3
+APP_DIR = join(BASE_DIR,'LangChat')
 
 env = environ.Env(
     DB_NAME=(str,''),
@@ -30,7 +30,7 @@ env = environ.Env(
 )
 
 # setting the absolute path to .env file
-ENV_PATH = join(ROOT_DIR, '.env')
+ENV_PATH = join(BASE_DIR, '.env')
 environ.Env.read_env(ENV_PATH) # reading .env file
 
 # Hidden Variables
@@ -121,11 +121,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = join(ROOT_DIR,'staticfiles')
 
 # Channels
 ASGI_APPLICATION = "LangChat.routing.application"
