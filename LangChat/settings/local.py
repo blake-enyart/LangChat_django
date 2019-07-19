@@ -20,7 +20,3 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = join(BASE_DIR,'staticfiles')

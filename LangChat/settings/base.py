@@ -122,6 +122,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = join(BASE_DIR,'staticfiles')
+
 # Channels
 ASGI_APPLICATION = "LangChat.routing.application"
 CHANNEL_LAYERS = {

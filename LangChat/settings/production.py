@@ -15,10 +15,6 @@ DATABASES = {
     }
 }
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = join(BASE_DIR,'staticfiles')
-
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
