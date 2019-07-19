@@ -128,7 +128,7 @@ STATIC_ROOT = join(BASE_DIR,'staticfiles')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    ('', join(BASE_DIR, 'static')),
+    join(BASE_DIR, 'static'),
 )
 
 # Channels
