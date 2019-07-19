@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = env('DEBUG')
 
 SECRET_KEY = env('SECRET_KEY')
 
