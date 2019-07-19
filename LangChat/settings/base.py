@@ -126,11 +126,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = join(BASE_DIR,'staticfiles')
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    join(BASE_DIR, 'static'),
-)
-
 # Channels
 ASGI_APPLICATION = "LangChat.routing.application"
 CHANNEL_LAYERS = {
