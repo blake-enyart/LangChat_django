@@ -22,7 +22,7 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    join(BASE_DIR, 'static'),
+    ('', join(BASE_DIR, 'static')),
 )
 
 django_heroku.settings(locals())
