@@ -10,7 +10,7 @@ DATABASES = {
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASS'),
-        'HOST': 'localhost',
+        'HOST': 'ec2-174-129-227-128.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
