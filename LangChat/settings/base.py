@@ -127,7 +127,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = join(BASE_DIR,'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#
+
 # Channels
 ASGI_APPLICATION = "LangChat.routing.application"
 CHANNEL_LAYERS = {
