@@ -1,5 +1,7 @@
 from .base import *
 
+ALLOWED_HOST = env('DJANGO_ALLOWED_HOSTS')
+
 DEBUG = env('DEBUG')
 
 SECRET_KEY = env('SECRET_KEY')
