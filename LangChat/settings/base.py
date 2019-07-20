@@ -47,10 +47,11 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-   'channels',
-   'django_extensions',
-   'rest_framework',
-   'corsheaders'
+    'corsheaders',
+    'channels',
+    'django_extensions',
+    'rest_framework',
+    'rest_framework.authtoken'
 )
 
 LOCAL_APPS = (
@@ -146,5 +147,10 @@ CHANNEL_LAYERS = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-    )
+    ),
+
+    # Permission settings
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }
