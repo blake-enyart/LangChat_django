@@ -21,6 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = (
             'id', 'username', 'password', 'password_confirmation',
-            'first_name', 'last_name', 'country_of_origin', "is_active"
+            'first_name', 'last_name', 'country_of_origin', "is_active",
+            "email"
         )
         read_only_fields = ('id',)
