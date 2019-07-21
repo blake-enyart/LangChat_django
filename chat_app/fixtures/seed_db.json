@@ -1,0 +1,126 @@
+[
+    {
+        "model": "chat_app.language",
+        "pk": 1,
+        "fields": {
+            "name": "french",
+            "abbreviated_name": "fr"
+        }
+    },
+    {
+        "model": "chat_app.language",
+        "pk": 2,
+        "fields": {
+            "name": "spanish",
+            "abbreviated_name": "es"
+        }
+    },
+    {
+        "model": "chat_app.language",
+        "pk": 3,
+        "fields": {
+            "name": "spanish",
+            "abbreviated_name": "es"
+        }
+    },
+    {
+        "model": "chat_app.language",
+        "pk": 4,
+        "fields": {
+            "name": "spanish",
+            "abbreviated_name": "es"
+        }
+    },
+    {
+        "model": "chat_app.room",
+        "pk": 1,
+        "fields": {
+            "name": "french",
+            "language": 1
+        }
+    },
+    {
+        "model": "chat_app.room",
+        "pk": 6,
+        "fields": {
+            "name": "spanish",
+            "language": 4
+        }
+    },
+    {
+        "model": "chat_app.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$Nslxp139Jyuf$7xidTilmviVDcBTdrwoUvEwDLgt9EZpc06pdaLDHiPg=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "blakeenyart",
+            "first_name": "",
+            "last_name": "",
+            "email": "blake.enyart@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2019-07-21T23:03:47.926Z",
+            "country_of_origin": "",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "chat_app.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$I7m7LxuTsHuk$DSITz5/y7Fk24mtSMyTt0nzTj9UapunVzz2kppccHK4=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "test_user1",
+            "first_name": "first_name1",
+            "last_name": "last_name1",
+            "email": "example@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2019-07-22T00:28:24.699Z",
+            "country_of_origin": "Mars",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "chat_app.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$BJJME8MyDCsa$GVr3XhNnOqf2meDcC0DviCDSgUOmphwkzQZrMIwRjSQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "test_user2",
+            "first_name": "first_name3",
+            "last_name": "last_name3",
+            "email": "example@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2019-07-22T00:28:33.565Z",
+            "country_of_origin": "Mars",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "chat_app.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$OpiiSvjhERSf$BgzlSouG7wfM9HYQyvBKuOOHm3JOJHhCd6EuuY4h7Sc=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "test_user3",
+            "first_name": "first_name3",
+            "last_name": "last_name3",
+            "email": "example@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2019-07-22T00:28:44.905Z",
+            "country_of_origin": "Mars",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
