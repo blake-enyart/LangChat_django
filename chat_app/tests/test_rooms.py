@@ -40,20 +40,16 @@ class TestWebsockets:
         # Use in-memory channel layers for testing.
         settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
 
-        # Force authentication to get session ID.
+        # Force authentication to get token.
         client = Client()
         user = await create_user()
-
         client.force_login(user=user)
 
         # Pass session ID in headers to authenticate.
         communicator = WebsocketCommunicator(
             application=application,
-            path='/ws/chat_app/',
-            headers=[(
-                b'cookie',
-                f'sessionid={client.cookies["sessionid"].value}'.encode('ascii')
-            )]
+            path=f'/ws/chat_app/?token={user.auth_token.key}',
+
         )
         connected, _ = await communicator.connect()
         assert_true(connected)

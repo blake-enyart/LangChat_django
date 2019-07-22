@@ -16,7 +16,7 @@
 
     var chatSocket = new WebSocket(
         ws_scheme + '://' + window.location.host +
-        '/ws/' + roomName + '/');
+        '/ws/' + roomName + "/?token=" + "{{user.auth_token.key}}");
 
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
@@ -39,6 +39,8 @@
         var messageInputDom = document.querySelector('#chat-message-input');
         var message = messageInputDom.value;
         chatSocket.send(JSON.stringify({
+            'room_id': 1,
+            'language_id': 1,
             'message': message
         }));
 
