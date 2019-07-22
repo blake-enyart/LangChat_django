@@ -10,8 +10,8 @@ import json
 class ChatConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def save_message(self, text_data_json):
-        user = get_user_model().objects.filter(id=text_data_json['user_id'])
-        room = Room.objects.filter(id=text_data_json['room_id'])
+        user = get_user_model().objects.get(id=text_data_json['user_id'])
+        room = Room.objects.get(id=text_data_json['room_id'])
         if room:
             Message.objects.create(room=room, user=user, message=text_data_json['message'])
         else:

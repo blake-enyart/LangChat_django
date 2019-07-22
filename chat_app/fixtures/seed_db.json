@@ -16,22 +16,6 @@
         }
     },
     {
-        "model": "chat_app.language",
-        "pk": 3,
-        "fields": {
-            "name": "spanish",
-            "abbreviated_name": "es"
-        }
-    },
-    {
-        "model": "chat_app.language",
-        "pk": 4,
-        "fields": {
-            "name": "spanish",
-            "abbreviated_name": "es"
-        }
-    },
-    {
         "model": "chat_app.room",
         "pk": 1,
         "fields": {
@@ -41,10 +25,10 @@
     },
     {
         "model": "chat_app.room",
-        "pk": 6,
+        "pk": 2,
         "fields": {
             "name": "spanish",
-            "language": 4
+            "language": 2
         }
     },
     {
