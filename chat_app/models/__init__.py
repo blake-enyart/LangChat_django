@@ -1,3 +1,4 @@
+from .language import Language
 from .message import Message
 from .room import Room
 from .user import User

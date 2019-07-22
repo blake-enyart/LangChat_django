@@ -23,7 +23,7 @@ env = environ.Env(
     DB_USER=(str,''),
     DB_PASS=(str,''),
     DEBUG=(bool, False),
-    REDIS_URL=(tuple, ('127.0.0.1', 6379)),
+    REDIS_URL=(str, 'redis://localhost:6379'),
     SECRET_KEY=str,
     DJANGO_ALLOWED_HOSTS=(list, [])
 )

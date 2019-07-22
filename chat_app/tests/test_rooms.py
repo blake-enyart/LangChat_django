@@ -32,15 +32,15 @@ def create_user(
     return user
 
 
-@pytest.mark.asyncio
 @pytest.mark.django_db(transaction=True)
+@pytest.mark.asyncio
 class TestWebsockets:
 
     async def test_authorized_user_can_connect(self, settings):
         # Use in-memory channel layers for testing.
-        settings.local.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
+        settings.CHANNEL_LAYERS = TEST_CHANNEL_LAYERS
 
-        # Force authentication to get session ID.
+        # Force authentication to get token.
         client = Client()
         user = await create_user()
         client.force_login(user=user)
@@ -48,11 +48,8 @@ class TestWebsockets:
         # Pass session ID in headers to authenticate.
         communicator = WebsocketCommunicator(
             application=application,
-            path='/chat_app/',
-            headers=[(
-                b'cookie',
-                f'sessionid={client.cookies["sessionid"].value}'.encode('ascii')
-            )]
+            path=f'/ws/chat_app/?token={user.auth_token.key}',
+
         )
         connected, _ = await communicator.connect()
         assert_true(connected)
