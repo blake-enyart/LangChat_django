@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from ..models import Room
 import json
 
-class MessageList(APIView):
+class RoomMessageList(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request, room_id, format=None):
@@ -16,8 +16,10 @@ class MessageList(APIView):
         # We want to show the last 50 messages, ordered most-recent-last
         messages = list(room.messages.order_by('-timestamp')[:50])
         for idx, m in enumerate(messages):
+            user = messages.user
             md = model_to_dict(m)
             messages[idx] = md
+            messages[idx]['username'] = user.username
 
         messages = list(reversed(messages))
         return Response(json.dumps(messages, cls=DjangoJSONEncoder))
