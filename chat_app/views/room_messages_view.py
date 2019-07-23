@@ -4,7 +4,7 @@ from django.forms.models import model_to_dict
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from ..models import Room
+from ..models import Room, Message
 import json
 
 class RoomMessageList(APIView):
@@ -20,6 +20,14 @@ class RoomMessageList(APIView):
             md = model_to_dict(m)
             messages[idx] = md
             messages[idx]['username'] = user.username
+            reference = messages[idx]['reference']
+            if reference:
+                rm = Message.objects.get(id=reference)
+                rm_user = rm.user
+                rm_dict = model_to_dict(rm)
+                messages[idx]['reference'] = rm_dict
+                messages[idx]['reference']['username'] = rm_user.username
+
 
         messages = list(reversed(messages))
         return Response(json.dumps(messages, cls=DjangoJSONEncoder))
