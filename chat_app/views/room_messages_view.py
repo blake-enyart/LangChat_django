@@ -16,7 +16,7 @@ class RoomMessageList(APIView):
         # We want to show the last 50 messages, ordered most-recent-last
         messages = list(room.messages.order_by('-timestamp')[:50])
         for idx, m in enumerate(messages):
-            user = messages.user
+            user = m.user
             md = model_to_dict(m)
             messages[idx] = md
             messages[idx]['username'] = user.username
