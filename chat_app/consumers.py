@@ -12,15 +12,23 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def save_message(self, text_data_json):
         user = self.scope['user']
         room = Room.objects.get(id=text_data_json['room_id'])
+        reference_message = Message.objects.filter(id=text_data_json['reference'])
         if not room:
             room = Room.objects.create(
                 name=text_data_json['message'],
-                language=Language.objects.get(
-                id=text_data_json['language_id'])
+                language=Language.objects.get(id=text_data_json['language_id'])
             )
-        Message.objects.create(room=room, user=user, message=text_data_json['message'])
-
-        return Message.objects.latest('timestamp')
+        if len(reference_message):
+            Message.objects.create(room=room, user=user,
+                message=text_data_json['message'], reference=reference_message.first()
+            )
+            rm = reference_message.first()
+        else:
+            Message.objects.create(room=room, user=user,
+                message=text_data_json['message']
+            )
+            rm = None
+        return [Message.objects.latest('timestamp'), rm]
 
     async def connect(self):
         user = self.scope["user"]
@@ -49,10 +57,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
-        m = await self.save_message(text_data_json)
+        m, rm = await self.save_message(text_data_json)
         whole_message = model_to_dict(m)
+
+        if type(rm) == Message:
+            rm = model_to_dict(rm)
         user = self.scope['user']
-        whole_message['username'] = str(user.username)
+        whole_message['username'] = user.username
+        whole_message['reference'] = rm
         whole_message = json.dumps(whole_message, cls=DjangoJSONEncoder) # for dt conversion
         # Send message to room group
         await self.channel_layer.group_send(
