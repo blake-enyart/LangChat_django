@@ -61,7 +61,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         whole_message = model_to_dict(m)
 
         if type(rm) == Message:
+            rm_user = rm.user
             rm = model_to_dict(rm)
+            rm['username'] = rm_user.username
         user = self.scope['user']
         whole_message['username'] = user.username
         whole_message['reference'] = rm
