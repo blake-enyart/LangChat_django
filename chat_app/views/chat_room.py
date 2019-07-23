@@ -15,17 +15,3 @@ def room(request, room_name):
         'room_name_json': mark_safe(json.dumps(room_name)),
         'user': request.user
     })
-
-# def room(request, room_name):
-#     room = Room.objects.get(name=room_name)
-#
-#     # We want to show the last 50 messages, ordered most-recent-last
-#     messages = reversed(room.messages.order_by('-timestamp')[:50])
-#     for idx, m in enumerate(messages):
-#         md = model_to_dict(m)
-#         messages[idx] = json.dumps(md, cls=DjangoJSONEncoder)
-#
-#     return Response({
-#         'room_name_json': mark_safe(json.dumps(room_name)),
-#         'messages_json': messages
-#     })
