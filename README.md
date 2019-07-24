@@ -1,4 +1,4 @@
-# LangChat - Django
+# LangChat - Django  [![Build Status](https://travis-ci.com/blake-enyart/LangChat_django.svg?branch=master)](https://travis-ci.com/blake-enyart/LangChat_django)
 
  [Django application](https://langchat-crosspollination.herokuapp.com/) hosted on Heroku that integrates with a react native frontend that can be seen [here](url to follow)
 
