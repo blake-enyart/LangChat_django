@@ -50,8 +50,9 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'channels',
     'django_extensions',
+    'drf_yasg',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
 )
 
 LOCAL_APPS = (
@@ -153,4 +154,16 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'token': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+            'description': 'Demo Token: \n Token 8494aae94a05accc981b3e5820de3f9ccd9895b8',
+        }
+    },
+    'USE_SESSION_AUTH': False,
 }
