@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-
+from django.conf import settings
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -33,6 +33,7 @@ schema_view = get_schema_view(
       contact=openapi.Contact(name="Blake Enyart", email="blake.enyart@gmail.com"),
       license=openapi.License(name="BSD License"),
    ),
+   url=settings.CURRENT_HOST,
    public=True,
    permission_classes=(permissions.AllowAny,),
 )
