@@ -6,6 +6,8 @@ from rest_framework.views import APIView
 
 from ..serializers import UserSerializer
 
+from drf_yasg.utils import swagger_auto_schema
+
 # Mapping from post request keys to user columns in the db
 conversion = {
     "displayName": "username",
@@ -19,12 +21,14 @@ conversion = {
 }
 
 class UserList(APIView):
-    """
-    List all users, or create a new user.
-    POST api/v1/users
-    """
     permission_classes = (permissions.AllowAny,)
 
+    @swagger_auto_schema(
+        operation_description="Create a new user",
+        security=[],
+        tags=['Users'],
+        query_serializer=UserSerializer,
+    )
     def post(self, request, format=None):
         parsed_data = {
             conversion[key]: value for key, value in request.data.items()
