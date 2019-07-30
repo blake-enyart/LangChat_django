@@ -15,6 +15,7 @@
             "abbreviated_name": "es"
         }
     },
+
     {
         "model": "chat_app.room",
         "pk": 1,
@@ -31,12 +32,13 @@
             "language": 2
         }
     },
+
     {
         "model": "chat_app.user",
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$150000$Nslxp139Jyuf$7xidTilmviVDcBTdrwoUvEwDLgt9EZpc06pdaLDHiPg=",
-            "last_login": null,
+            "last_login": "2019-07-22T17:51:49.644Z",
             "is_superuser": true,
             "username": "blakeenyart",
             "first_name": "",
@@ -57,14 +59,14 @@
             "password": "pbkdf2_sha256$150000$I7m7LxuTsHuk$DSITz5/y7Fk24mtSMyTt0nzTj9UapunVzz2kppccHK4=",
             "last_login": null,
             "is_superuser": false,
-            "username": "test_user1",
-            "first_name": "first_name1",
+            "username": "Thierry",
+            "first_name": "Thierry",
             "last_name": "last_name1",
             "email": "example@gmail.com",
             "is_staff": false,
             "is_active": true,
             "date_joined": "2019-07-22T00:28:24.699Z",
-            "country_of_origin": "Mars",
+            "country_of_origin": "America",
             "groups": [],
             "user_permissions": []
         }
@@ -76,14 +78,14 @@
             "password": "pbkdf2_sha256$150000$BJJME8MyDCsa$GVr3XhNnOqf2meDcC0DviCDSgUOmphwkzQZrMIwRjSQ=",
             "last_login": null,
             "is_superuser": false,
-            "username": "test_user2",
-            "first_name": "first_name3",
-            "last_name": "last_name3",
+            "username": "Jacques",
+            "first_name": "Jacques",
+            "last_name": "last_name2",
             "email": "example@gmail.com",
             "is_staff": false,
             "is_active": true,
-            "date_joined": "2019-07-22T00:28:33.565Z",
-            "country_of_origin": "Mars",
+            "date_joined": "2019-07-04T00:28:33.565Z",
+            "country_of_origin": "France",
             "groups": [],
             "user_permissions": []
         }
@@ -95,16 +97,177 @@
             "password": "pbkdf2_sha256$150000$OpiiSvjhERSf$BgzlSouG7wfM9HYQyvBKuOOHm3JOJHhCd6EuuY4h7Sc=",
             "last_login": null,
             "is_superuser": false,
-            "username": "test_user3",
-            "first_name": "first_name3",
+            "username": "Pepe",
+            "first_name": "Pepe",
             "last_name": "last_name3",
             "email": "example@gmail.com",
             "is_staff": false,
             "is_active": true,
-            "date_joined": "2019-07-22T00:28:44.905Z",
+            "date_joined": "2019-07-10T00:28:44.905Z",
             "country_of_origin": "Mars",
             "groups": [],
             "user_permissions": []
+        }
+    },
+    {
+        "model": "chat_app.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$OpiiSvjhERSf$BgzlSouG7wfM9HYQyvBKuOOHm3JOJHhCd6EuuY4h7Sc=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Brittany",
+            "first_name": "Brittany",
+            "last_name": "last_name4",
+            "email": "example@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2019-07-10T00:28:44.905Z",
+            "country_of_origin": "Mars",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "chat_app.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$OpiiSvjhERSf$BgzlSouG7wfM9HYQyvBKuOOHm3JOJHhCd6EuuY4h7Sc=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Maria",
+            "first_name": "Maria",
+            "last_name": "last_name5",
+            "email": "example@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2019-06-10T00:28:44.905Z",
+            "country_of_origin": "Spain",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+
+
+    {
+        "model": "chat_app.message",
+        "pk": 1,
+        "fields": {
+            "room": 1,
+            "user": 2,
+            "message": "Salut, Jacques. Ça va?",
+            "timestamp": "2019-07-22T18:05:24.458Z",
+            "reference": null
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 2,
+        "fields": {
+            "room": 1,
+            "user": 3,
+            "message": "Ça va. Et vous?",
+            "timestamp": "2019-07-22T18:08:47.718Z",
+            "reference": null
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 3,
+        "fields": {
+            "room": 1,
+            "user": 2,
+            "message": "J'ai fatigue. J'ai beaucoup de fair.",
+            "timestamp": "2019-07-22T18:34:01.133Z",
+            "reference": null
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 4,
+        "fields": {
+            "room": 1,
+            "user": 3,
+            "message": "Je suis fatigué. J’ai beaucoup à faire.",
+            "timestamp": "2019-07-22T18:34:42.436Z",
+            "reference": 3
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 5,
+        "fields": {
+            "room": 1,
+            "user": 3,
+            "message": "Pour le travail?",
+            "timestamp": "2019-07-23T00:04:17.931Z",
+            "reference": null
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 6,
+        "fields": {
+            "room": 1,
+            "user": 2,
+            "message": "Oui. Nous avez une nouveau client avec beaucoups des demandes.",
+            "timestamp": "2019-07-23T00:05:23.838Z",
+            "reference": null
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 7,
+        "fields": {
+            "room": 1,
+            "user": 3,
+            "message": "Oui. Nous avons un nouveau client avec beaucoup de demandes.",
+            "timestamp": "2019-07-23T01:01:39.889Z",
+            "reference": 6
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 8,
+        "fields": {
+            "room": 1,
+            "user": 3,
+            "message": "Par exemple?",
+            "timestamp": "2019-07-23T01:04:35.669Z",
+            "reference": null
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 9,
+        "fields": {
+            "room": 1,
+            "user": 2,
+            "message": "Il veux un grande bateau pour un fete ce weekend.",
+            "timestamp": "2019-07-23T01:05:47.322Z",
+            "reference": null
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 10,
+        "fields": {
+            "room": 1,
+            "user": 3,
+            "message": "Il veut un grand bateau pour une fête ce week-end.",
+            "timestamp": "2019-07-23T01:06:27.323Z",
+            "reference": 9
+        }
+    },
+    {
+        "model": "chat_app.message",
+        "pk": 11,
+        "fields": {
+            "room": 1,
+            "user": 3,
+            "message": "Un bateau?",
+            "timestamp": "2019-07-23T01:08:02.247Z",
+            "reference": null
         }
     }
 ]

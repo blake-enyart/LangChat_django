@@ -19,13 +19,14 @@ BASE_DIR = environ.Path(__file__) - 3
 APP_DIR = join(BASE_DIR,'LangChat')
 
 env = environ.Env(
+    CURRENT_HOST=(str,''),
     DB_NAME=(str,''),
     DB_USER=(str,''),
     DB_PASS=(str,''),
     DEBUG=(bool, False),
+    DJANGO_ALLOWED_HOSTS=(list, []),
     REDIS_URL=(str, 'redis://localhost:6379'),
     SECRET_KEY=str,
-    DJANGO_ALLOWED_HOSTS=(list, [])
 )
 
 # setting the absolute path to .env file
@@ -33,7 +34,7 @@ ENV_PATH = join(BASE_DIR, '.env')
 environ.Env.read_env(ENV_PATH) # reading .env file
 
 # Hidden Variables
-# APP_ID = env('APP_ID')
+CURRENT_HOST = env('CURRENT_HOST')
 # API_KEY = env('API_KEY')
 
 # Application definition
@@ -50,8 +51,9 @@ THIRD_PARTY_APPS = (
     'corsheaders',
     'channels',
     'django_extensions',
+    'drf_yasg',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
 )
 
 LOCAL_APPS = (
@@ -153,4 +155,16 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'token': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+            'description': 'Demo Token: \n Token 8494aae94a05accc981b3e5820de3f9ccd9895b8',
+        },
+    },
+    'USE_SESSION_AUTH': False,
 }

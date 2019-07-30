@@ -7,9 +7,16 @@ from rest_framework.views import APIView
 from ..models import Room, Message
 import json
 
+from drf_yasg.utils import swagger_auto_schema
+
 class RoomMessageList(APIView):
     permission_classes = (permissions.AllowAny,)
 
+    @swagger_auto_schema(
+        operation_description="Return the last 50 messages from a chatroom",
+        tags=['Rooms'],
+        security=[],
+    )
     def get(self, request, room_id, format=None):
         room = Room.objects.get(id=room_id)
 
